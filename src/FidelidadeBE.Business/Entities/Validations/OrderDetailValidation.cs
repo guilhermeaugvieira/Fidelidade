@@ -13,7 +13,7 @@ public class OrderDetailValidation : BaseEntityValidation<OrderDetail>
         RuleFor(c => c.DeliveryStatus)
             .NotEmpty().WithMessage("The field {PropertyName} must be filled")
             .Length(3, 30)
-            .WithMessage("The filed {PropertyName} must have between {MinLength} and {MaxLength} characters");
+            .WithMessage("The field {PropertyName} must have between {MinLength} and {MaxLength} characters");
 
         RuleFor(c => c.Product)
             .SetValidator(new Point_ProductValidation()!);

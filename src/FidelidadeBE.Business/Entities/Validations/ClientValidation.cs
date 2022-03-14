@@ -16,7 +16,7 @@ public class ClientValidation : BaseEntityValidation<Client>
 
         RuleFor(c => c.CPF)
             .NotEmpty().WithMessage("The field {PropertyName} must be filled")
-            .Length(11).WithMessage("The filed {PropertyName} must have {ComparisonValue} characters");
+            .Length(11).WithMessage("The field {PropertyName} must have {ComparisonValue} characters");
 
         RuleFor(c => c.User)
             .SetValidator(new UserValidation()!);

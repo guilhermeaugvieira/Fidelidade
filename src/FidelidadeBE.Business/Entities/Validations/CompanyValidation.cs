@@ -16,7 +16,7 @@ public class CompanyValidation : BaseEntityValidation<Company>
 
         RuleFor(c => c.CNPJ)
             .NotEmpty().WithMessage("The field {PropertyName} must be filled")
-            .Length(14).WithMessage("The filed {PropertyName} must have {ComparisonValue} characters");
+            .Length(14).WithMessage("The field {PropertyName} must have {ComparisonValue} characters");
 
         RuleFor(c => c.User)
             .SetValidator(new UserValidation()!);
