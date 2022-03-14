@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "f2981812-d1ca-4993-aded-191e65788917": {
+      "ProjectGuid": "f2981812-d1ca-4993-aded-191e65788917",
+      "DisplayName": "FidelidadeBE.API",
+      "ColorIndex": 0
+    },
+    "348f0fe4-db7c-44b0-81ff-0900a4b0b294": {
+      "ProjectGuid": "348f0fe4-db7c-44b0-81ff-0900a4b0b294",
+      "DisplayName": "FidelidadeBE.Business",
+      "ColorIndex": 1
+    },
+    "c84b3f23-f6d9-439c-911f-75d35c6a9196": {
+      "ProjectGuid": "c84b3f23-f6d9-439c-911f-75d35c6a9196",
+      "DisplayName": "FidelidadeBE.Data",
+      "ColorIndex": 2
+    },
+    "2597e1fb-ca8d-4b7e-9cd1-d01473dc70df": {
+      "ProjectGuid": "2597e1fb-ca8d-4b7e-9cd1-d01473dc70df",
+      "DisplayName": "FidelidadeBE.Application",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "589ae94c-03a5-4cc0-9051-429b685e2817": {
+      "ProjectGuid": "589ae94c-03a5-4cc0-9051-429b685e2817",
+      "DisplayName": "FidelidadeBE.Core",
+      "ColorIndex": 4
+    },
+    "b185bc24-b808-4be9-a690-4a620444a38c": {
+      "ProjectGuid": "b185bc24-b808-4be9-a690-4a620444a38c",
+      "DisplayName": "FidelidadeBE.Infra",
+      "ColorIndex": 5
+    }
+  },
+  "NextColorIndex": 6
+}
