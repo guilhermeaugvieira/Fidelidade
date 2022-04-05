@@ -7,7 +7,7 @@ public class Client : BaseEntity
     public string CPF { get; private set; }
     public virtual Address? Address { get; private set; }
     public virtual User? User { get; private set; }
-    public virtual IEnumerable<Point?> Points { get; private set; }
+    public virtual IEnumerable<Point> Points { get; }
 
     public Client()
     {
