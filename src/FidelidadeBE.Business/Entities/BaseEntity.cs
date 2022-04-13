@@ -1,4 +1,6 @@
-﻿namespace FidelidadeBE.Business.Entities;
+﻿using FidelidadeBE.Business.Helpers;
+
+namespace FidelidadeBE.Business.Entities;
 
 public abstract class BaseEntity
 {
@@ -8,7 +10,7 @@ public abstract class BaseEntity
 
     protected BaseEntity()
     {
-        Id = Guid.NewGuid();
+        Id = CombGuid.Generate();
         CreatedAt = DateTime.Now;
     }
 
