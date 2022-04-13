@@ -7,7 +7,7 @@ public class Company : BaseEntity
     public string CNPJ { get; private set; }
     public virtual Address? Address { get; private set; }
     public virtual User? User { get; private set; }
-    public virtual IEnumerable<Point_Company> Points { get; }
+    public virtual IEnumerable<Point_Company> Points { get; private set; }
 
     public Company()
     {
