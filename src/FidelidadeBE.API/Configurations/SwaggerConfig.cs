@@ -54,7 +54,7 @@ public static class SwaggerConfig
                 In = ParameterLocation.Header,
                 Type = SecuritySchemeType.Http,
                 BearerFormat = "JWT",
-                Scheme = "bearer"
+                Scheme = "bearer",
             });
 
             c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -67,9 +67,7 @@ public static class SwaggerConfig
                             Type = ReferenceType.SecurityScheme,
                             Id = JwtBearerDefaults.AuthenticationScheme
                         },
-                        Scheme = "Bearer",
-                        Name = "Bearer",
-                        In = ParameterLocation.Header
+                        Name = "Bearer"
                     },
                     new List<string>()
                 }
