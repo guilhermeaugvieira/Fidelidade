@@ -47,7 +47,7 @@ public static class SwaggerConfig
         {
             c.OperationFilter<SwaggerDefaultValues>();
 
-            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            var authenticationSecurityScheme = new OpenApiSecurityScheme
             {
                 Description = "Insert only your JWT Token",
                 Name = "Authorization",
@@ -55,21 +55,20 @@ public static class SwaggerConfig
                 Type = SecuritySchemeType.Http,
                 BearerFormat = "JWT",
                 Scheme = "bearer",
-            });
-
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = JwtBearerDefaults.AuthenticationScheme
+                }
+            };
+            
+            c.AddSecurityDefinition(authenticationSecurityScheme.Reference.Id,
+                authenticationSecurityScheme);
+            
             c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = JwtBearerDefaults.AuthenticationScheme
-                        },
-                        Name = "Bearer"
-                    },
-                    new List<string>()
+                    authenticationSecurityScheme, new string[] {}
                 }
             });
         });
