@@ -47,3 +47,5 @@ app.UseWebApiConfig();
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.Run();
+
+public partial class Program {}
