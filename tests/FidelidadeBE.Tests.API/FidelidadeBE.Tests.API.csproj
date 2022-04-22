@@ -35,6 +35,7 @@
       <Compile Remove="JwtModel.cs" />
       <Compile Remove="TestConfiguration.cs" />
       <Compile Remove="TestingWebAppFactory.cs" />
+      <Compile Remove="Configuration\TestConfigurations.cs" />
     </ItemGroup>
 
 </Project>

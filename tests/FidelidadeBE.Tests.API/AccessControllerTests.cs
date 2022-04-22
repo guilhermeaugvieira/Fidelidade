@@ -16,24 +16,18 @@ using Xunit;
 
 namespace FidelidadeBE.Tests.API;
 
-public class AccessControllerTests : IClassFixture<TestWebApplicationFactory<Program>>
+public class AccessControllerTests
 {
-    private readonly HttpClient _client;
-    private readonly TestWebApplicationFactory<Program> _factory;
-
-    public AccessControllerTests(TestWebApplicationFactory<Program> factory)
+    [Fact]
+    public async Task LoginNotSuccessfully()
     {
-        _factory = factory;
-        _client = factory.CreateClient(new WebApplicationFactoryClientOptions
+        var webApplicationFactory = new TestWebApplicationFactory<Program>();
+        var client = webApplicationFactory.CreateClient(new WebApplicationFactoryClientOptions
         {
             AllowAutoRedirect = false,
             BaseAddress = new Uri("https://localhost:7125/api", UriKind.Absolute)
         });
-    }
-
-    [Fact]
-    public async Task LoginNotSuccessfully()
-    {
+        
         //Arrange
         var userAccess = new UserAccessRequestModel()
         {
@@ -44,7 +38,7 @@ public class AccessControllerTests : IClassFixture<TestWebApplicationFactory<Pro
         var expectedReturn = new ErrorVM(new List<string>() {"Login doesn't exist"});
 
         //Act
-        var requestResult = await _client.PostAsJsonAsync(
+        var requestResult = await client.PostAsJsonAsync(
             "/v1.0/Access/Login",
             userAccess
         );
