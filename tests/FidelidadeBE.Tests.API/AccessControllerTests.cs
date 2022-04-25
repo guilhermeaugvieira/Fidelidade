@@ -32,7 +32,7 @@ public class AccessControllerTests
         var userAccess = new UserAccessRequestModel()
         {
             Email = "administratorx@application.com",
-            Password = "P@ssw0rd",
+            Password = "P@ssw0rdTeste",
         };
 
         var expectedReturn = new ErrorVM(new List<string>() {"Login doesn't exist"});

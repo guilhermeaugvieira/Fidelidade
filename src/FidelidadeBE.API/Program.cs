@@ -3,6 +3,7 @@ using FidelidadeBE.API.Extensions;
 using FidelidadeBE.Application.Extensions;
 using FidelidadeBE.Infra.Configurations;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using RT.Comb.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,8 @@ builder.Services.AddJwtConfig(builder.Configuration);
 builder.Services.AddAutoMapperMappings();
 
 builder.Services.AddDependencyInjectionConfig();
+
+builder.Services.AddSqlCombGuidWithUnixDateTime();
 
 var app = builder.Build();
 
