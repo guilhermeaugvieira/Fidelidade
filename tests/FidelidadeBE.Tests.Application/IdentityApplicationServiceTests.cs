@@ -15,7 +15,7 @@ using Enumerable = System.Linq.Enumerable;
 
 namespace FidelidadeBE.Tests.Application;
 
-public class AccessApplicationServiceTests
+public class IdentityApplicationServiceTests
 {
     [Fact]
     public async Task LoginError_WhenUserDoesntExist()
