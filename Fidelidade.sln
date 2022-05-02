@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{99ECE686
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FidelidadeBE.Tests.API", "tests\FidelidadeBE.Tests.API\FidelidadeBE.Tests.API.csproj", "{5AE601A7-0DE0-4993-A322-F97306B2C5A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FidelidadeBE.Tests.Application", "tests\FidelidadeBE.Tests.Application\FidelidadeBE.Tests.Application.csproj", "{FB317809-37E1-4F97-AB06-7DD6D4A236C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{5AE601A7-0DE0-4993-A322-F97306B2C5A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AE601A7-0DE0-4993-A322-F97306B2C5A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AE601A7-0DE0-4993-A322-F97306B2C5A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB317809-37E1-4F97-AB06-7DD6D4A236C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB317809-37E1-4F97-AB06-7DD6D4A236C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB317809-37E1-4F97-AB06-7DD6D4A236C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB317809-37E1-4F97-AB06-7DD6D4A236C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{B185BC24-B808-4BE9-A690-4A620444A38C} = {12BBAEB5-91C9-4291-ADB9-B2DBA205BBEF}
 		{2597E1FB-CA8D-4B7E-9CD1-D01473DC70DF} = {12BBAEB5-91C9-4291-ADB9-B2DBA205BBEF}
 		{5AE601A7-0DE0-4993-A322-F97306B2C5A7} = {99ECE686-4A1C-43E6-AEC9-250D2B660F56}
+		{FB317809-37E1-4F97-AB06-7DD6D4A236C3} = {99ECE686-4A1C-43E6-AEC9-250D2B660F56}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {29151545-9530-4325-83CC-92325895D1CD}

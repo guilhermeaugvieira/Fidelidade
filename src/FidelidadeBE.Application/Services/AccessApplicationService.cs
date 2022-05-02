@@ -7,17 +7,14 @@ namespace FidelidadeBE.Application.Services;
 
 public class AccessApplicationService : IAccessApplicationService
 {
-    private readonly INotificator _notificator;
     private readonly IIdentityApplicationService _identityApplicationService;
     private readonly IJwtService _jwtService;
 
     public AccessApplicationService(
-        INotificator notificator,
         IIdentityApplicationService identityApplicationService,
         IJwtService jwtService
     )
     {
-        _notificator = notificator;
         _identityApplicationService = identityApplicationService;
         _jwtService = jwtService;
     }

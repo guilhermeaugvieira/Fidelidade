@@ -4,6 +4,7 @@ using FidelidadeBE.Data.Context;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FidelidadeBE.Tests.API.Configuration;
@@ -27,12 +28,16 @@ public class TestWebApplicationFactory<TStartup> : WebApplicationFactory<TStartu
             
             services.AddDbContext<ApplicationContext>(options =>
             {
-                options.UseInMemoryDatabase($"{currentDateTime.ToString("MM/dd/yyyy hh:mm:ss.fff tt").Replace(' ', '_')}_DatabaseTest");
+                options.UseInMemoryDatabase(
+                        $"{currentDateTime.ToString("MM/dd/yyyy hh:mm:ss.fff tt").Replace(' ', '_')}_DatabaseTest")
+                    .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             });
             
             services.AddDbContext<IdentityContext>(options =>
             {
-                options.UseInMemoryDatabase($"{currentDateTime.ToString("MM/dd/yyyy hh:mm:ss.fff tt").Replace(' ', '_')}_DatabaseTest");
+                options.UseInMemoryDatabase(
+                        $"{currentDateTime.ToString("MM/dd/yyyy hh:mm:ss.fff tt").Replace(' ', '_')}_DatabaseTest")
+                    .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             });
 
             services.BuildServiceProvider();
