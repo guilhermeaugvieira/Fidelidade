@@ -7,13 +7,15 @@ public class PointValidation : BaseEntityValidation<Point>
     public PointValidation()
     {
         RuleFor(c => c.ClientId)
-            .NotEmpty().WithMessage("The field {PropertyName} must be filled")
+            .NotEmpty().WithMessage("The field {PropertyName} must be filled");
+            
+        RuleFor(c => c.ClientId)
             .NotEqual(Guid.Empty).WithMessage("The field {PropertyName} can't be a default value");
 
         RuleFor(c => c.AssignedPoints)
             .NotEqual(0).WithMessage("The field {PropertyName} must be different of {ComparisonValue}");
 
         RuleFor(c => c.Client)
-            .SetValidator(new ClientValidation()!);
+            .SetValidator(new ClientValidation()!).When( c => c.Client != null);
     }
 }

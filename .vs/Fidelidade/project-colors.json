@@ -40,7 +40,12 @@
       "ProjectGuid": "5ae601a7-0de0-4993-a322-f97306b2c5a7",
       "DisplayName": "FidelidadeBE.Tests.API",
       "ColorIndex": 6
+    },
+    "fb317809-37e1-4f97-ab06-7dd6d4a236c3": {
+      "ProjectGuid": "fb317809-37e1-4f97-ab06-7dd6d4a236c3",
+      "DisplayName": "FidelidadeBE.Tests.Application",
+      "ColorIndex": 7
     }
   },
-  "NextColorIndex": 7
+  "NextColorIndex": 8
 }
