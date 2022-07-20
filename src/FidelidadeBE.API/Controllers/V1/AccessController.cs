@@ -23,9 +23,9 @@ public class AccessController : BaseController
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorVM))]
     [AllowAnonymous]
     [HttpPost("Login")]
-    public async Task<ActionResult<string>> Login(UserAccessRequestModel user)
+    public async Task<ActionResult<SuccessVM<string>>> Login(UserAccessRequestModel user)
     {
-        if (!ModelState.IsValid)
+        if (ModelState is not {IsValid: true})
         {
             NotifyInvalidModelError(ModelState);
             return BadRequest(new ErrorVM(GetErrors()));

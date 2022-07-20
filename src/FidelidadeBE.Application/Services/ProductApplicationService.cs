@@ -44,7 +44,7 @@ public class ProductApplicationService : IProductApplicationService
         var categories = product.CategoryPath.Split('/');
         var productCategories = new List<Category>();
 
-        if (categories.Length == 0)
+        if (categories is {Length: 0})
         {
             _notificator.AddNotification("Any category was informed", NotificationType.IncorrectData);
             return null;

@@ -36,9 +36,9 @@ public class AdministratorController : BaseController
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ErrorVM))]
     [AllowAnonymous]
     [HttpPost]
-    public async Task<ActionResult<AddUserResponseModel>> AddClient(AddUserRequestModel administratorUserInfo)
+    public async Task<ActionResult<SuccessVM<AddUserResponseModel>>> AddAdministrator(AddUserRequestModel administratorUserInfo)
     {
-        if (!ModelState.IsValid)
+        if (ModelState is not {IsValid: true})
         {
             NotifyInvalidModelError(ModelState);
             return BadRequest(new ErrorVM(GetErrors()));
@@ -52,9 +52,9 @@ public class AdministratorController : BaseController
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SuccessVM<AddProductRequestModel>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorVM))]
     [HttpPost("Product")]
-    public async Task<ActionResult<AddProductResponseModel>> AddProduct(AddProductRequestModel product)
+    public async Task<ActionResult<SuccessVM<AddProductRequestModel>>> AddProduct(AddProductRequestModel product)
     {
-        if (!ModelState.IsValid)
+        if (ModelState is not {IsValid: true})
         {
             NotifyInvalidModelError(ModelState);
             return BadRequest(new ErrorVM(GetErrors()));
@@ -68,7 +68,7 @@ public class AdministratorController : BaseController
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SuccessVM<IEnumerable<AddProductResponseModel>>))]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [HttpGet("Product/Available")]
-    public async Task<ActionResult<AddAddressResponseModel>> GetAvailableRedeemProducts()
+    public async Task<ActionResult<SuccessVM<IEnumerable<AddProductResponseModel>>>> GetAvailableRedeemProducts()
     {
         var response = await _productApplicationService.GetAvailableProductsAsync();
 
@@ -80,10 +80,10 @@ public class AdministratorController : BaseController
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorVM))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ErrorVM))]
     [HttpPut("Order/{orderId:guid}/Status")]
-    public async Task<ActionResult<AddProductResponseModel>> UpdateOrderDetailStatus(Guid orderId,
+    public async Task<ActionResult<SuccessVM<UpdateOrderDetailResponseModel>>> UpdateOrderDetailStatus(Guid orderId,
         DeliveryStatusType status)
     {
-        if (!ModelState.IsValid)
+        if (ModelState is not {IsValid: true})
         {
             NotifyInvalidModelError(ModelState);
             return BadRequest(new ErrorVM(GetErrors()));
@@ -97,7 +97,7 @@ public class AdministratorController : BaseController
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SuccessVM<IEnumerable<UpdateOrderDetailResponseModel>>))]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [HttpGet("Order")]
-    public async Task<ActionResult<IEnumerable<UpdateOrderDetailResponseModel>>> GetOrders()
+    public async Task<ActionResult<SuccessVM<IEnumerable<UpdateOrderDetailResponseModel>>>> GetOrders()
     {
         var response = await _orderDetailApplicationService.GetOrders();
 

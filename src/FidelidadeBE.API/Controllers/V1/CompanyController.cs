@@ -33,9 +33,9 @@ public class CompanyController : BaseController
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ErrorVM))]
     [AllowAnonymous]
     [HttpPost]
-    public async Task<ActionResult<AddCompanyResponseModel>> AddCompany(AddCompanyRequestModel companyInfo)
+    public async Task<ActionResult<SuccessVM<AddCompanyResponseModel>>> AddCompany(AddCompanyRequestModel companyInfo)
     {
-        if (!ModelState.IsValid)
+        if (ModelState is not {IsValid: true})
         {
             NotifyInvalidModelError(ModelState);
             return BadRequest(new ErrorVM(GetErrors()));
@@ -50,9 +50,9 @@ public class CompanyController : BaseController
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorVM))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ErrorVM))]
     [HttpPut("Address")]
-    public async Task<ActionResult<AddAddressResponseModel>> UpdateAddress(AddAddressRequestModel newAddress)
+    public async Task<ActionResult<SuccessVM<AddAddressResponseModel>>> UpdateAddress(AddAddressRequestModel newAddress)
     {
-        if (!ModelState.IsValid)
+        if (ModelState is not {IsValid: true})
         {
             NotifyInvalidModelError(ModelState);
             return BadRequest(new ErrorVM(GetErrors()));
@@ -68,10 +68,10 @@ public class CompanyController : BaseController
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorVM))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ErrorVM))]
     [HttpPost("Client/{clientCpf}/Point")]
-    public async Task<ActionResult<AddPoint_CompanyResponseModel>> AssignPointsToClient(string clientCpf,
+    public async Task<ActionResult<SuccessVM<AddPoint_CompanyResponseModel>>> AssignPointsToClient(string clientCpf,
         AddPoint_CompanyRequestModel pointCompanyInfo)
     {
-        if (!ModelState.IsValid)
+        if (ModelState is not {IsValid: true})
         {
             NotifyInvalidModelError(ModelState);
             return BadRequest(new ErrorVM(GetErrors()));

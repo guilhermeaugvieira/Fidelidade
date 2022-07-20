@@ -19,9 +19,9 @@ public abstract class BaseEntityValidation<TEntity> : AbstractValidator<TEntity>
             .NotEqual(default(DateTime)).WithMessage("The field {PropertyName} can't be a default value");
 
         RuleFor(c => c.UpdatedAt)
-            .NotEqual(default(DateTime)).When(c => c.UpdatedAt != null).WithMessage("The field {PropertyName} can't be a default value");
+            .NotEqual(default(DateTime)).When(c => c is {UpdatedAt: null}).WithMessage("The field {PropertyName} can't be a default value");
             
         RuleFor(c => c.UpdatedAt)
-            .GreaterThan(c => c.CreatedAt).When(c => c.UpdatedAt != null).WithMessage("The field {PropertyName} must be greater than {ComparisonValue}");
+            .GreaterThan(c => c.CreatedAt).When(c => c is {UpdatedAt: null}).WithMessage("The field {PropertyName} must be greater than {ComparisonValue}");
     }
 }

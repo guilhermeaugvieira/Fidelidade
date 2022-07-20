@@ -32,7 +32,7 @@ public class AspNetUser : IUser
 
     public bool IsAuthenticated()
     {
-        return _accessor.HttpContext!.User.Identity!.IsAuthenticated;
+        return _accessor.HttpContext!.User.Identity! is {IsAuthenticated: true};
     }
 
     public bool IsInRole(string role)

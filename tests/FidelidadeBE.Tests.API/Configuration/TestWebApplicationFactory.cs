@@ -10,7 +10,13 @@ using Microsoft.Extensions.DependencyInjection;
 namespace FidelidadeBE.Tests.API.Configuration;
 
 public class TestWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
-{ 
+{
+    private readonly string _testName;
+    
+    public TestWebApplicationFactory(string testName)
+    {
+        _testName = testName;
+    }
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureServices(services =>
@@ -20,23 +26,23 @@ public class TestWebApplicationFactory<TStartup> : WebApplicationFactory<TStartu
             
             var identityContextOptions = services.SingleOrDefault(
                 d => d.ServiceType == typeof(DbContextOptions<IdentityContext>));
-            
-            services.Remove(applicationContextOptions);
-            services.Remove(identityContextOptions);
+
+            if (applicationContextOptions != null) services.Remove(applicationContextOptions);
+            if (identityContextOptions != null) services.Remove(identityContextOptions);
 
             var currentDateTime = DateTime.Now;
             
             services.AddDbContext<ApplicationContext>(options =>
             {
                 options.UseInMemoryDatabase(
-                        $"{currentDateTime.ToString("MM/dd/yyyy hh:mm:ss.fff tt").Replace(' ', '_')}_DatabaseTest")
+                        $"{currentDateTime.ToString("MM/dd/yyyy hh:mm:ss.fff tt").Replace(' ', '_')}_{_testName}_ApplicationDatabaseTest")
                     .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             });
             
             services.AddDbContext<IdentityContext>(options =>
             {
                 options.UseInMemoryDatabase(
-                        $"{currentDateTime.ToString("MM/dd/yyyy hh:mm:ss.fff tt").Replace(' ', '_')}_DatabaseTest")
+                        $"{currentDateTime.ToString("MM/dd/yyyy hh:mm:ss.fff tt").Replace(' ', '_')}_{_testName}_IdentityDatabaseTest")
                     .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             });
 

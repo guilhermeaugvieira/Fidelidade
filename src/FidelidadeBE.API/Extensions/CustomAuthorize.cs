@@ -13,7 +13,7 @@ public static class CustomAuthorization
         RoleManager<IdentityRole> roleManager,
         UserManager<IdentityUser> userManager)
     {
-        var userHasClaim = context.User.Identity!.IsAuthenticated &&
+        var userHasClaim = context.User.Identity! is {IsAuthenticated: true} &&
             context.User.Claims.Any(c => c.Type == claim.Type && c.Value == claim.Value);
 
         if (!userHasClaim) return await VerifyClaimInUserRoles(context, claim, roleManager, userManager);
@@ -70,7 +70,7 @@ public class ClaimFilterRequest : IAsyncAuthorizationFilter
 
     public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
     {
-        if (!context.HttpContext.User.Identity!.IsAuthenticated) context.Result = new StatusCodeResult(401);
+        if (!(context.HttpContext.User.Identity! is {IsAuthenticated: true})) context.Result = new StatusCodeResult(401);
 
         if (!await CustomAuthorization.ValidateUserClaims(context.HttpContext, _claim, _roleManager, _userManager))
             context.Result = new StatusCodeResult(403);

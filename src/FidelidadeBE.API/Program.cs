@@ -4,6 +4,7 @@ using FidelidadeBE.Application.Extensions;
 using FidelidadeBE.Infra.Configurations;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using RT.Comb.AspNetCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,11 @@ builder.Services.AddDependencyInjectionConfig();
 
 builder.Services.AddSqlCombGuidWithUnixDateTime();
 
+builder.Host.UseSerilog((context, services, configuration) => configuration
+    .ReadFrom.Configuration(context.Configuration)   
+    .ReadFrom.Services(services)
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,9 +43,13 @@ if (app.Environment.IsDevelopment())
     );
 }
 
+//app.UseAllElasticApm(builder.Configuration);
+
 app.UseHttpsRedirection();
 
 app.UseRouting();
+
+app.UseSerilogRequestLogging();
 
 app.UseAuthentication();
 

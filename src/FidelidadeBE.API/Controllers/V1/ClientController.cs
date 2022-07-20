@@ -43,9 +43,9 @@ public class ClientController : BaseController
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ErrorVM))]
     [AllowAnonymous]
     [HttpPost]
-    public async Task<ActionResult<AddClientResponseModel>> AddClient(AddClientRequestModel clientInfo)
+    public async Task<ActionResult<SuccessVM<AddClientResponseModel>>> AddClient(AddClientRequestModel clientInfo)
     {
-        if (!ModelState.IsValid)
+        if (ModelState is not {IsValid: true})
         {
             NotifyInvalidModelError(ModelState);
             return BadRequest(new ErrorVM(GetErrors()));
@@ -59,9 +59,9 @@ public class ClientController : BaseController
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SuccessVM<AddAddressResponseModel>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorVM))]
     [HttpPut("Address")]
-    public async Task<ActionResult<AddAddressResponseModel>> UpdateAddress(AddAddressRequestModel newAddress)
+    public async Task<ActionResult<SuccessVM<AddAddressResponseModel>>> UpdateAddress(AddAddressRequestModel newAddress)
     {
-        if (!ModelState.IsValid)
+        if (ModelState is not {IsValid: true})
         {
             NotifyInvalidModelError(ModelState);
             return BadRequest(new ErrorVM(GetErrors()));
@@ -75,7 +75,7 @@ public class ClientController : BaseController
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SuccessVM<IEnumerable<AddProductResponseModel>>))]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [HttpGet("Product/Available")]
-    public async Task<ActionResult<AddAddressResponseModel>> GetAvailableRedeemProducts()
+    public async Task<ActionResult<SuccessVM<IEnumerable<AddProductResponseModel>>>> GetAvailableRedeemProducts()
     {
         var response = await _productApplicationService.GetAvailableProductsAsync();
 
@@ -87,9 +87,9 @@ public class ClientController : BaseController
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorVM))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ErrorVM))]
     [HttpPost("Product/{productId:guid}/Redeem")]
-    public async Task<ActionResult<AddAddressResponseModel>> RedeemProduct(Guid productId)
+    public async Task<ActionResult<SuccessVM<AddOrderDetailResponseModel>>> RedeemProduct(Guid productId)
     {
-        if (!ModelState.IsValid)
+        if (ModelState is not {IsValid: true})
         {
             NotifyInvalidModelError(ModelState);
             return BadRequest(new ErrorVM(GetErrors()));
@@ -105,9 +105,9 @@ public class ClientController : BaseController
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorVM))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ErrorVM))]
     [HttpPut("Order/{orderId:guid}/ConfirmDelivery")]
-    public async Task<ActionResult<AddProductResponseModel>> UpdateOrderDetailStatus(Guid orderId)
+    public async Task<ActionResult<SuccessVM<UpdateOrderDetailResponseModel>>> UpdateOrderDetailStatus(Guid orderId)
     {
-        if (!ModelState.IsValid)
+        if (ModelState is not {IsValid: true})
         {
             NotifyInvalidModelError(ModelState);
             return BadRequest(new ErrorVM(GetErrors()));
@@ -122,7 +122,7 @@ public class ClientController : BaseController
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ErrorVM))]
     [HttpGet("Order")]
-    public async Task<ActionResult<AddProductResponseModel>> GetAllClientOrders()
+    public async Task<ActionResult<SuccessVM<IEnumerable<UpdateOrderDetailResponseModel>>>> GetAllClientOrders()
     {
         var response = await _orderDetailApplicationService.GetAllClientOrders();
 
@@ -133,7 +133,7 @@ public class ClientController : BaseController
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ErrorVM))]
     [HttpGet("Point/Report")]
-    public async Task<ActionResult<AddProductResponseModel>> GetPointReport()
+    public async Task<ActionResult<SuccessVM<PointReportResponseModel>>> GetPointReport()
     {
         var response = await _pointApplicationService.GeneratePointReport();
 

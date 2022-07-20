@@ -2,30 +2,33 @@
 
 namespace FidelidadeBE.API.Extensions;
 
-public class ExceptionMiddleware
+public class ExceptionMiddleware : IMiddleware
 {
-    private readonly RequestDelegate _next;
-
-    public ExceptionMiddleware(RequestDelegate next)
-    {
-        _next = next;
-    }
-
-    public async Task InvokeAsync(HttpContext httpContext)
+    public async Task InvokeAsync(HttpContext httpContext, RequestDelegate next)
     {
         try
         {
-            await _next(httpContext);
+            await next(httpContext);
         }
-        catch
+        catch(Exception e)
         {
-            await HandleExceptionAsync(httpContext);
+            await HandleExceptionAsync(httpContext, e);
         }
     }
 
-    private static Task HandleExceptionAsync(HttpContext context)
+    private static async Task HandleExceptionAsync(HttpContext context, Exception e)
     {
+        var exceptionObject = new
+        {
+            success = false,
+            errors = new
+            {
+                message = e.Message,
+                innerException = e.InnerException,
+            },
+        };
+
         context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
-        return Task.CompletedTask;
+        await context.Response.WriteAsJsonAsync(exceptionObject);
     }
 }
