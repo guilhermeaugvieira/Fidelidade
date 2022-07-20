@@ -50,7 +50,7 @@ public class ProductApplicationService : IProductApplicationService
             return null;
         }
 
-        for (var categoryIndex = 0; categoryIndex < categories.Length; categoryIndex++)
+        for (var categoryIndex = 0; categoryIndex < categories.Length && categories[categoryIndex] != ""; categoryIndex++)
             if (categoryIndex == 0)
             {
                 var foundCategory = await ObtainCategoryAsync(categories[categoryIndex], null, categoryIndex + 1);

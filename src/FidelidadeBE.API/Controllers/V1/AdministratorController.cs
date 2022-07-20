@@ -49,10 +49,10 @@ public class AdministratorController : BaseController
         return BaseResponse(response);
     }
 
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SuccessVM<AddProductRequestModel>))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SuccessVM<AddProductResponseModel>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorVM))]
     [HttpPost("Product")]
-    public async Task<ActionResult<SuccessVM<AddProductRequestModel>>> AddProduct(AddProductRequestModel product)
+    public async Task<ActionResult<SuccessVM<AddProductResponseModel>>> AddProduct(AddProductRequestModel product)
     {
         if (ModelState is not {IsValid: true})
         {

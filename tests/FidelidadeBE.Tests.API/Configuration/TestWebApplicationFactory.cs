@@ -35,14 +35,14 @@ public class TestWebApplicationFactory<TStartup> : WebApplicationFactory<TStartu
             services.AddDbContext<ApplicationContext>(options =>
             {
                 options.UseInMemoryDatabase(
-                        $"{currentDateTime.ToString("MM/dd/yyyy hh:mm:ss.fff tt").Replace(' ', '_')}_{_testName}_ApplicationDatabaseTest")
+                        $"{_testName}_ApplicationDatabaseTest")
                     .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             });
             
             services.AddDbContext<IdentityContext>(options =>
             {
                 options.UseInMemoryDatabase(
-                        $"{currentDateTime.ToString("MM/dd/yyyy hh:mm:ss.fff tt").Replace(' ', '_')}_{_testName}_IdentityDatabaseTest")
+                        $"{_testName}_IdentityDatabaseTest")
                     .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             });
 

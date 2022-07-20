@@ -22,9 +22,9 @@ public class AccessControllerTests
     }
     
     [Fact]
-    public async Task LoginSuccessfull()
+    public async Task LoginSuccessfully()
     {
-        var webApplicationFactory = new TestWebApplicationFactory<Program>("LoginSuccessfull");
+        var webApplicationFactory = new TestWebApplicationFactory<Program>("LoginSuccessfully");
         var client = webApplicationFactory.CreateClient(new WebApplicationFactoryClientOptions
         {
             AllowAutoRedirect = false,
@@ -56,6 +56,8 @@ public class AccessControllerTests
         );
 
         var response = JsonConvert.DeserializeObject<SuccessVM<string>>(await loginResult.Content.ReadAsStringAsync());
+        
+        _output.WriteLine($"Access Token: {response.Data}");
         
         // Assert
         Assert.Equal(HttpStatusCode.OK, loginResult.StatusCode);
