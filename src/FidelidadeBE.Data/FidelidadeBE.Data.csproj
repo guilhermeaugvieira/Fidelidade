@@ -7,23 +7,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1">
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1"/>
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\FidelidadeBE.Business\FidelidadeBE.Business.csproj"/>
+        <ProjectReference Include="..\FidelidadeBE.Business\FidelidadeBE.Business.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Migrations\Application"/>
-        <Folder Include="Migrations\Identity"/>
+        <Folder Include="Migrations\Application" />
+        <Folder Include="Migrations\Identity" />
     </ItemGroup>
 
 </Project>
