@@ -4,17 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FidelidadeBE.Data.Mappings;
 
-public class UserMapping : IEntityTypeConfiguration<User>
+public class UserMapping : BaseEntityMapping<User>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public override void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.HasKey(p => p.Id);
-
-        builder.Property(p => p.CreatedAt)
-            .IsRequired();
-
-        builder.Property(p => p.UpdatedAt);
-
         builder.Property(p => p.Name)
             .HasColumnType("VARCHAR(50)")
             .IsRequired();
@@ -32,5 +25,7 @@ public class UserMapping : IEntityTypeConfiguration<User>
             .UsePropertyAccessMode(PropertyAccessMode.Property);
 
         builder.ToTable("Users");
+        
+        base.Configure(builder);
     }
 }

@@ -4,17 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FidelidadeBE.Data.Mappings;
 
-public class ClientMapping : IEntityTypeConfiguration<Client>
+public class ClientMapping : BaseEntityMapping<Client>
 {
-    public void Configure(EntityTypeBuilder<Client> builder)
+    public override void Configure(EntityTypeBuilder<Client> builder)
     {
-        builder.HasKey(p => p.Id);
-
-        builder.Property(p => p.CreatedAt)
-            .IsRequired();
-
-        builder.Property(p => p.UpdatedAt);
-
         builder.Property(p => p.CPF)
             .HasColumnType("VARCHAR(11)")
             .IsRequired();
@@ -44,5 +37,7 @@ public class ClientMapping : IEntityTypeConfiguration<Client>
             .UsePropertyAccessMode(PropertyAccessMode.Property);
 
         builder.ToTable("Clients");
+        
+        base.Configure(builder);
     }
 }

@@ -4,17 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FidelidadeBE.Data.Mappings;
 
-public class CompanyMapping : IEntityTypeConfiguration<Company>
+public class CompanyMapping : BaseEntityMapping<Company>
 {
-    public void Configure(EntityTypeBuilder<Company> builder)
+    public override void Configure(EntityTypeBuilder<Company> builder)
     {
-        builder.HasKey(p => p.Id);
-
-        builder.Property(p => p.CreatedAt)
-            .IsRequired();
-
-        builder.Property(p => p.UpdatedAt);
-
         builder.Property(p => p.CNPJ)
             .HasColumnType("VARCHAR(14)")
             .IsRequired();
@@ -44,5 +37,7 @@ public class CompanyMapping : IEntityTypeConfiguration<Company>
             .UsePropertyAccessMode(PropertyAccessMode.Property);
 
         builder.ToTable("Companies");
+        
+        base.Configure(builder);
     }
 }

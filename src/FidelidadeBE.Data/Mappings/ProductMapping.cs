@@ -4,17 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FidelidadeBE.Data.Mappings;
 
-public class ProductMapping : IEntityTypeConfiguration<Product>
+public class ProductMapping : BaseEntityMapping<Product>
 {
-    public void Configure(EntityTypeBuilder<Product> builder)
+    public override void Configure(EntityTypeBuilder<Product> builder)
     {
-        builder.HasKey(p => p.Id);
-
-        builder.Property(p => p.CreatedAt)
-            .IsRequired();
-
-        builder.Property(p => p.UpdatedAt);
-
         builder.Property(p => p.Name)
             .HasColumnType("VARCHAR(30)")
             .IsRequired();
@@ -35,5 +28,7 @@ public class ProductMapping : IEntityTypeConfiguration<Product>
             .UsePropertyAccessMode(PropertyAccessMode.Property);
 
         builder.ToTable("Products");
+        
+        base.Configure(builder);
     }
 }

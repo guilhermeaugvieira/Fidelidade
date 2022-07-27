@@ -4,17 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FidelidadeBE.Data.Mappings;
 
-public class Point_CompanyMapping : IEntityTypeConfiguration<Point_Company>
+public class Point_CompanyMapping : BaseEntityMapping<Point_Company>
 {
-    public void Configure(EntityTypeBuilder<Point_Company> builder)
+    public override void Configure(EntityTypeBuilder<Point_Company> builder)
     {
-        builder.HasKey(p => p.Id);
-
-        builder.Property(p => p.CreatedAt)
-            .IsRequired();
-
-        builder.Property(p => p.UpdatedAt);
-
         builder.HasOne(p => p.Company)
             .WithMany(s => s.Points)
             .HasForeignKey(p => p.CompanyId)
@@ -34,5 +27,7 @@ public class Point_CompanyMapping : IEntityTypeConfiguration<Point_Company>
             .UsePropertyAccessMode(PropertyAccessMode.Property);
 
         builder.ToTable("Point_Company");
+        
+        base.Configure(builder);
     }
 }

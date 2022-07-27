@@ -4,17 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FidelidadeBE.Data.Mappings;
 
-public class AddressMapping : IEntityTypeConfiguration<Address>
+public class AddressMapping : BaseEntityMapping<Address>
 {
-    public void Configure(EntityTypeBuilder<Address> builder)
+    public override void Configure(EntityTypeBuilder<Address> builder)
     {
-        builder.HasKey(p => p.Id);
-
-        builder.Property(p => p.CreatedAt)
-            .IsRequired();
-
-        builder.Property(p => p.UpdatedAt);
-
         builder.Property(p => p.State)
             .HasColumnType("VARCHAR(2)")
             .IsRequired();
@@ -44,5 +37,7 @@ public class AddressMapping : IEntityTypeConfiguration<Address>
             .UsePropertyAccessMode(PropertyAccessMode.Property);
 
         builder.ToTable("Addresses");
+        
+        base.Configure(builder);
     }
 }

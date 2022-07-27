@@ -4,17 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FidelidadeBE.Data.Mappings;
 
-public class CategoryMapping : IEntityTypeConfiguration<Category>
+public class CategoryMapping : BaseEntityMapping<Category>
 {
-    public void Configure(EntityTypeBuilder<Category> builder)
+    public override void Configure(EntityTypeBuilder<Category> builder)
     {
-        builder.HasKey(p => p.Id);
-
-        builder.Property(p => p.CreatedAt)
-            .IsRequired();
-
-        builder.Property(p => p.UpdatedAt);
-
         builder.Property(p => p.Name)
             .HasColumnType("VARCHAR(30)")
             .IsRequired();
@@ -32,5 +25,7 @@ public class CategoryMapping : IEntityTypeConfiguration<Category>
             .UsePropertyAccessMode(PropertyAccessMode.Property);
 
         builder.ToTable("Categories");
+        
+        base.Configure(builder);
     }
 }

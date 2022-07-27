@@ -4,17 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FidelidadeBE.Data.Mappings;
 
-public class OrderDetailMapping : IEntityTypeConfiguration<OrderDetail>
+public class OrderDetailMapping : BaseEntityMapping<OrderDetail>
 {
-    public void Configure(EntityTypeBuilder<OrderDetail> builder)
+    public override void Configure(EntityTypeBuilder<OrderDetail> builder)
     {
-        builder.HasKey(p => p.Id);
-
-        builder.Property(p => p.CreatedAt)
-            .IsRequired();
-
-        builder.Property(p => p.UpdatedAt);
-
         builder.Property(p => p.DeliveryStatus)
             .HasColumnType("VARCHAR(30)")
             .IsRequired();
@@ -26,5 +19,7 @@ public class OrderDetailMapping : IEntityTypeConfiguration<OrderDetail>
             .IsRequired();
 
         builder.ToTable("OrderDetails");
+        
+        base.Configure(builder);
     }
 }

@@ -4,17 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FidelidadeBE.Data.Mappings;
 
-public class Category_SubCategoryMapping : IEntityTypeConfiguration<Category_SubCategory>
+public class Category_SubCategoryMapping : BaseEntityMapping<Category_SubCategory>
 {
-    public void Configure(EntityTypeBuilder<Category_SubCategory> builder)
+    public override void Configure(EntityTypeBuilder<Category_SubCategory> builder)
     {
-        builder.HasKey(p => p.Id);
-
-        builder.Property(p => p.CreatedAt)
-            .IsRequired();
-
-        builder.Property(p => p.UpdatedAt);
-
         builder.HasOne(p => p.ParentCategory)
             .WithMany(s => s.SubCategories!)
             .HasForeignKey(p => p.ParentCategoryId)
@@ -35,5 +28,7 @@ public class Category_SubCategoryMapping : IEntityTypeConfiguration<Category_Sub
             .UsePropertyAccessMode(PropertyAccessMode.Property);
 
         builder.ToTable("Category_SubCategories");
+        
+        base.Configure(builder);
     }
 }

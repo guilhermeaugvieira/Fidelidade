@@ -4,17 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FidelidadeBE.Data.Mappings;
 
-public class PointMapping : IEntityTypeConfiguration<Point>
+public class PointMapping : BaseEntityMapping<Point>
 {
-    public void Configure(EntityTypeBuilder<Point> builder)
+    public override void Configure(EntityTypeBuilder<Point> builder)
     {
-        builder.HasKey(p => p.Id);
-
-        builder.Property(p => p.CreatedAt)
-            .IsRequired();
-
-        builder.Property(p => p.UpdatedAt);
-
         builder.Property(p => p.AssignedPoints)
             .IsRequired();
 
@@ -34,5 +27,7 @@ public class PointMapping : IEntityTypeConfiguration<Point>
             .UsePropertyAccessMode(PropertyAccessMode.Property);
 
         builder.ToTable("Points");
+
+        base.Configure(builder);
     }
 }
