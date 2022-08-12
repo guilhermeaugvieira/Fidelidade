@@ -13,12 +13,6 @@ public static class ConfigureIdentity
     public static void AddIdentityConfiguration(this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddDbContext<IdentityContext>(options =>
-        {
-            options.UseMySql(configuration.GetConnectionString("MySql"),
-                ServerVersion.AutoDetect(configuration.GetConnectionString("MySql")));
-        });
-
         services.AddDefaultIdentity<IdentityUser>()
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<IdentityContext>()

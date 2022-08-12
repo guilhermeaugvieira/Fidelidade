@@ -3,6 +3,7 @@ using System.Linq;
 using FidelidadeBE.Data.Context;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +20,7 @@ public class TestWebApplicationFactory<TStartup> : WebApplicationFactory<TStartu
     }
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        builder.ConfigureServices(services =>
+        builder.ConfigureTestServices(services =>
         {
             var applicationContextOptions = services.SingleOrDefault(
                 d => d.ServiceType == typeof(DbContextOptions<ApplicationContext>));
@@ -30,23 +31,19 @@ public class TestWebApplicationFactory<TStartup> : WebApplicationFactory<TStartu
             if (applicationContextOptions != null) services.Remove(applicationContextOptions);
             if (identityContextOptions != null) services.Remove(identityContextOptions);
 
-            var currentDateTime = DateTime.Now;
-            
             services.AddDbContext<ApplicationContext>(options =>
             {
                 options.UseInMemoryDatabase(
                         $"{_testName}_ApplicationDatabaseTest")
                     .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             });
-            
+
             services.AddDbContext<IdentityContext>(options =>
             {
                 options.UseInMemoryDatabase(
                         $"{_testName}_IdentityDatabaseTest")
                     .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             });
-
-            services.BuildServiceProvider();
         });
     }
 }
