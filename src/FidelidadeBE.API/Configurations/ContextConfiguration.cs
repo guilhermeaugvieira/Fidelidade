@@ -17,7 +17,8 @@ public static class ConfigureContext
         services.AddDbContext<IdentityContext>(options =>
         {
             options.UseMySql(configuration.GetConnectionString("MySql"),
-                ServerVersion.AutoDetect(configuration.GetConnectionString("MySql")));
+                ServerVersion.AutoDetect(configuration.GetConnectionString("MySql")))
+                .EnableSensitiveDataLogging();
         });
     }
 }

@@ -1,3 +1,5 @@
+using Elastic.Apm.AspNetCore;
+using Elastic.Apm.EntityFrameworkCore;
 using FidelidadeBE.API.Configurations;
 using FidelidadeBE.API.Extensions;
 using FidelidadeBE.Application.Extensions;
@@ -43,7 +45,7 @@ if (app.Environment.IsDevelopment())
     );
 }
 
-//app.UseAllElasticApm(builder.Configuration);
+app.UseElasticApm(app.Configuration, new EfCoreDiagnosticsSubscriber());
 
 app.UseHttpsRedirection();
 
