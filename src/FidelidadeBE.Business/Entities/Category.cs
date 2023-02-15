@@ -8,9 +8,7 @@ public class Category : BaseEntity
     public virtual Category_SubCategory? DependentCategory { get; private set; }
     public virtual IEnumerable<Product> Products { get; private set; }
 
-    public Category()
-    {
-    }
+    protected Category() { }
 
     public Category(string name, int level)
     {

@@ -8,9 +8,7 @@ public class Product : BaseEntity
     public virtual Category? Category { get; private set; }
     public virtual Point_Product? Point { get; private set; }
 
-    public Product()
-    {
-    }
+    protected Product() {}
 
     public Product(string name, int points, Category category)
     {

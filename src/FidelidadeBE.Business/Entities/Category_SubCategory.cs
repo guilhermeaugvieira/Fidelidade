@@ -7,9 +7,7 @@ public class Category_SubCategory : BaseEntity
     public virtual Category? ParentCategory { get; private set; }
     public virtual Category? SubCategory { get; private set; }
 
-    public Category_SubCategory()
-    {
-    }
+    protected Category_SubCategory() { }
 
     public Category_SubCategory(Guid subCategoryId, Guid categoryId)
     {

@@ -11,9 +11,7 @@ public class Address : BaseEntity
     public virtual Client? Client { get; private set; }
     public virtual Company? Company { get; private set; }
 
-    public Address()
-    {
-    }
+    protected Address() { }
 
     public Address(string state, string city, string district, string cep, string street, int? number)
     {

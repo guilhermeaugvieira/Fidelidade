@@ -36,7 +36,8 @@ public class PointRepository : IPointRepository
             .Include(x => x.Product)
                 .ThenInclude(x => x!.Product)
                     .ThenInclude(x => x!.Category)
-            .Where(filter).AsQueryable();
+            .Where(filter)
+            .OrderByDescending(x => x.CreatedAt).AsQueryable();
 
         if (isTrackingDisabled)
             query = query.AsNoTrackingWithIdentityResolution();

@@ -17,7 +17,5 @@ public class Point_Product : BaseEntity
         PointId = point.Id;
     }
 
-    public Point_Product()
-    {
-    }
+    protected Point_Product() {}
 }

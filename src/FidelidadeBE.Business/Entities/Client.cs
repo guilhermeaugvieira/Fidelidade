@@ -9,9 +9,7 @@ public class Client : BaseEntity
     public virtual User? User { get; private set; }
     public virtual IEnumerable<Point> Points { get; private set; }
 
-    public Client()
-    {
-    }
+    protected Client() { }
 
     public Client(Address address, User user, string cpf)
     {

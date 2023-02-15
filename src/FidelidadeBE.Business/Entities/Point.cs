@@ -15,7 +15,6 @@ public class Point : BaseEntity
         AssignedPoints = assignedPoints;
     }
 
-    public Point()
-    {
-    }
+    protected Point() { }
+
 }

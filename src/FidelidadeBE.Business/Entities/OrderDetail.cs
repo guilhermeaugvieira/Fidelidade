@@ -8,9 +8,7 @@ public class OrderDetail : BaseEntity
     public string DeliveryStatus { get; private set; }
     public virtual Point_Product? Product { get; private set; }
 
-    public OrderDetail()
-    {
-    }
+    protected OrderDetail() {}
 
     public OrderDetail(Point_Product product, string deliveryStatus)
     {

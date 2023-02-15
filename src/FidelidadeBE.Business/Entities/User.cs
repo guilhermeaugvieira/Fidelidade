@@ -7,9 +7,7 @@ public class User : BaseEntity
     public virtual Client? Client { get; private set; }
     public virtual Company? Company { get; private set; }
 
-    public User()
-    {
-    }
+    protected User() {}
 
     public User(string name)
     {

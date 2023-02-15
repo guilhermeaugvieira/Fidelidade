@@ -15,7 +15,5 @@ public class Point_Company : BaseEntity
         CompanyId = company.Id;
     }
 
-    public Point_Company()
-    {
-    }
+    protected Point_Company() { }
 }
