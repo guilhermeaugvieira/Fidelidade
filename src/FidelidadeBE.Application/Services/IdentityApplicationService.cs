@@ -97,9 +97,9 @@ public class IdentityApplicationService : IIdentityApplicationService
     {
         var claim = new Claim(claimType, claimValue);
 
-        var count = (await _roleManager.GetClaimsAsync(role)).Count(x => x.Type == claimType && x.Value == claimValue);
+        var claimCheck = (await _roleManager.GetClaimsAsync(role)).Any(x => x.Type == claimType && x.Value == claimValue);
 
-        if (count == 0) await _roleManager.AddClaimAsync(role, claim);
+        if (!claimCheck) await _roleManager.AddClaimAsync(role, claim);
     }
 
     public async Task AddRoleToUserAsync(IdentityUser user, string roleName)
