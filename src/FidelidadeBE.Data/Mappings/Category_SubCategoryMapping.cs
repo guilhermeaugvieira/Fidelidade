@@ -16,7 +16,6 @@ public class Category_SubCategoryMapping : BaseEntityMapping<Category_SubCategor
 
         builder.HasOne(p => p.SubCategory)
             .WithOne(s => s.DependentCategory)
-            .HasPrincipalKey<Category>(s => s.Id)
             .HasForeignKey<Category_SubCategory>(p => p.SubCategoryId)
             .OnDelete(DeleteBehavior.NoAction)
             .IsRequired();
