@@ -88,7 +88,7 @@ public class ProductApplicationService : IProductApplicationService
 
     public async Task<IEnumerable<AddProductResponseModel>?> GetAvailableProductsAsync()
     {
-        var products = await _productRepository.GetManyAsync(x => x.Point == null, true);
+        var products = await _productRepository.GetManyAsync(x => x.Point == null);
 
         return !products.Any() ? null : _mapper.Map<IEnumerable<AddProductResponseModel>>(products);
     }
@@ -100,7 +100,7 @@ public class ProductApplicationService : IProductApplicationService
         if (parentCategoryName == null)
         {
             var category =
-                await _categoryRepository.GetAsync(x => x.Level == categoryLevel && x.Name == subCategoryName, true);
+                await _categoryRepository.GetAsync(x => x.Level == categoryLevel && x.Name == subCategoryName);
 
             if (category != null) return category;
 
@@ -115,7 +115,7 @@ public class ProductApplicationService : IProductApplicationService
         var subCategory = await _categorySubCategoryRepository.GetAsync(x => x.SubCategory!.Name == subCategoryName &&
             x.SubCategory.Level == categoryLevel &&
             x.ParentCategory!.Name == parentCategoryName &&
-            x.ParentCategory.Level == categoryLevel - 1, true);
+            x.ParentCategory.Level == categoryLevel - 1);
 
         if (subCategory != null) return subCategory.SubCategory;
 
@@ -132,7 +132,7 @@ public class ProductApplicationService : IProductApplicationService
     private async Task<bool> AddSubCategoryRelationsAsync(Guid subCategoryId, Guid parentCategoryId)
     {
         var subCategoryFound = await _categorySubCategoryRepository.GetAsync(x =>
-            x.SubCategoryId == subCategoryId && x.ParentCategoryId == parentCategoryId, true);
+            x.SubCategoryId == subCategoryId && x.ParentCategoryId == parentCategoryId);
 
         if (subCategoryFound != null) return true;
 

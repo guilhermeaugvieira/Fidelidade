@@ -48,7 +48,7 @@ public class ClientApplicationService : IClientApplicationService
             return null;
         }
 
-        if (await _clientRepository.GetAsync(x => x.CPF == clientInfo.CPF, true) != null)
+        if (await _clientRepository.GetAsync(x => x.CPF == clientInfo.CPF) != null)
         {
             _notificator.AddNotification("The CPF is being used by another user", NotificationType.BusinessRules);
             return null;

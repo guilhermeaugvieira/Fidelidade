@@ -47,7 +47,7 @@ public class CompanyApplicationService : ICompanyApplicationService
             return null;
         }
 
-        if (await _companyRepository.GetAsync(x => x.CNPJ == companyInfo.CNPJ, true) != null)
+        if (await _companyRepository.GetAsync(x => x.CNPJ == companyInfo.CNPJ) != null)
         {
             _notificator.AddNotification("The CNPJ is being used by another user", NotificationType.BusinessRules);
             return null;
